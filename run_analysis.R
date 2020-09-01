@@ -22,7 +22,7 @@ Tidy.data <- Merge.data %>%
     
 #Step 3. Change Tidy.data code to activity description 
 Tidy.data$code <- activities[Tidy.data$code, 2]
-Tidy.data$activity <- as.factor(Tidy.data$activity)
+Tidy.data$code <- as.factor(Tidy.data$code)
 
 #Step 4. Appropriately labels the data set with descriptive variable names.
 names(Tidy.data)[2] <- "activity"
@@ -42,7 +42,7 @@ names(Tidy.data)<-gsub("gravity", "Gravity", names(Tidy.data))
 FinalDoc <- Tidy.data %>%
     group_by(subject, activity) %>%
     summarise_all(funs(mean))
-write.table(FinalDoc, "FinalDoc.txt", row.names = FALSE)
+write.table(FinalDoc, "FinalDoc.txt", row.names = FALSE, col.names = TRUE)
 
 
 
